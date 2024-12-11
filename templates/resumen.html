@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen del Pedido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resumen del Pedido</h1>
+
+    <section>
+        <h2>Información del Cliente</h2>
+        <p><strong>Nombre:</strong> {{ nombre }}</p>
+        <p><strong>Dirección:</strong> {{ direccion }}</p>
+    </section>
+
+    <section>
+        <h2>Detalle de las Bebidas</h2>
+        <ul>
+            {% for bebida in bebidas %}
+                <li>
+                    <strong>Bebida:</strong> {{ bebida.tipo_bebida }} |
+                    <strong>Categoría:</strong> {{ bebida.categoria }} |
+                    <strong>Subcategoría:</strong> {{ bebida.subcategoria }} |
+                    <strong>Leche:</strong> {{ bebida.tipo_leche }} |
+                    <strong>Azúcar:</strong> {{ bebida.azucar }} |
+                    <strong>Consideraciones:</strong> {{ bebida.consideraciones }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Detalle de los Alimentos</h2>
+        <ul>
+            {% for alimento in alimentos %}
+                <li>
+                    <strong>Alimento:</strong> {{ alimento.tipo_alimento }} |
+                    <strong>Categoría:</strong> {{ alimento.categoria }} |
+                    <strong>Subcategoría:</strong> {{ alimento.subcategoria }} |
+                    <strong>Consideraciones:</strong> {{ alimento.consideraciones }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Detalle de las Promociones</h2>
+        <ul>
+            {% for promocion in promociones %}
+                <li>
+                    <strong>Bebida:</strong> {{ promocion.tipo_bebida }} |
+                    <strong>Categoría:</strong> {{ promocion.categoria }} |
+                    <strong>Subcategoría:</strong> {{ promocion.subcategoria }} |
+                    <strong>Consideraciones:</strong> {{ promocion.consideraciones }}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+
+        <p><strong>Total: MXN</strong> {{ total }}</p>
+
+    </section>
+
+    <form method="POST" action="/resumen/{{ token }}">
+        <div class="button-container">
+            <button type="submit" name="confirmar_pedido">Confirmar Pedido</button>
+            <button type="submit" name="reiniciar">Volver al Inicio</button>
+        </div>
+    </form>
+</body>
+</html>

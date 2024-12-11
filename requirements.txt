@@ -1,0 +1,7 @@
+Flask
+gunicorn
+gspread
+pandas
+geopy
+boto3
+
